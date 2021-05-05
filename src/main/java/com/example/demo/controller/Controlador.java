@@ -28,7 +28,7 @@ public class Controlador {
 	}
 	
 	@GetMapping("/login")
-	public String login(Model model, @RequestParam String email, @RequestParam String contrasenha) {
+	public String login(Model model, @RequestParam String email, @RequestParam(required=false, defaultValue="1234") String contrasenha) {
 		Usuario usuario = new Usuario(email, contrasenha);
 		model.addAttribute("usuario", usuario);
 		return "saludo";
