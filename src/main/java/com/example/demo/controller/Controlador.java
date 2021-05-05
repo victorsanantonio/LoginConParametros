@@ -1,8 +1,12 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.models.Usuario;
 
 @Controller
 @RequestMapping("")
@@ -21,5 +25,12 @@ public class Controlador {
 	@GetMapping("/contacto")
 	public String contacto() {
 		return "contacto";
+	}
+	
+	@GetMapping("/login")
+	public String login(Model model, @RequestParam String email, @RequestParam String contrasenha) {
+		Usuario usuario = new Usuario(email, contrasenha);
+		model.addAttribute("usuario", usuario);
+		return "saludo";
 	}
 }
